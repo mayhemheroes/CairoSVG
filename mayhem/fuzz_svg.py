@@ -11,7 +11,8 @@ with atheris.instrument_imports(include=['cairosvg']):
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 from gzip import BadGzipFile
-
+from zlib import error
+from http.client import InvalidURL
 def TestOneInput(data):
     fdp = fuzz_helpers.EnhancedFuzzedDataProvider(data)
     choice = fdp.ConsumeIntInRange(0, 2)
@@ -22,7 +23,7 @@ def TestOneInput(data):
             cairosvg.svg2pdf(fdp.ConsumeRemainingBytes())
         elif choice == 2:
             cairosvg.svg2ps(fdp.ConsumeRemainingBytes())
-    except (URLError, ParseError, ValueError, EOFError, BadGzipFile):
+    except (URLError, ParseError, ValueError, EOFError, BadGzipFile, error, InvalidURL):
         return -1
     except AttributeError:
         if random.random() > .99:
