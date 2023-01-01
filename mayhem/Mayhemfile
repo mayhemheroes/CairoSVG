@@ -1,0 +1,9 @@
+project: CairoSVG
+target: fuzz-svg
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_svg.py
+    libfuzzer: true
+    timeout: 12
