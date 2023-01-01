@@ -18,12 +18,12 @@ def TestOneInput(data):
     choice = fdp.ConsumeIntInRange(0, 2)
     try:
         if choice == 0:
-            cairosvg.svg2png(url=fdp.ConsumeRemainingString())
-        elif choice == 1:
-            cairosvg.svg2pdf(fdp.ConsumeRemainingBytes())
+            cairosvg.svg2png(bytestring=fdp.ConsumeRemainingBytes())
+        if choice == 1:
+            cairosvg.svg2pdf(bytestring=fdp.ConsumeRemainingBytes())
         elif choice == 2:
-            cairosvg.svg2ps(fdp.ConsumeRemainingBytes())
-    except (URLError, ParseError, ValueError, EOFError, BadGzipFile, error, InvalidURL):
+            cairosvg.svg2ps(bytestring=fdp.ConsumeRemainingBytes())
+    except (ParseError, ValueError, EOFError, BadGzipFile, error, URLError, InvalidURL):
         return -1
     except AttributeError:
         if random.random() > .99:
