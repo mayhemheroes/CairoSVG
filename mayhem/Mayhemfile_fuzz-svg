@@ -1,0 +1,9 @@
+# Mayhem target: CairoSVG SVG converter (Atheris/libFuzzer harness).
+# The cmd binary is a PyInstaller onefile ELF bundling Python+atheris (Mayhem edge collection).
+project: CairoSVG
+target: fuzz-svg
+
+cmds:
+  - cmd: /mayhem/fuzz-svg
+    libfuzzer: true
+    timeout: 12
